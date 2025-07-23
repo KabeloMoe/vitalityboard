@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>20 Block Table Random Selector</title>
+  </head>
+  <style>
+  .container { 
+    height: 200px;
+    position: relative; 
+  }
+
+  .center {
+    position: absolute;
+    top: 220%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  .button {
+    margin: 15px 0px 0px 30px ;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+
+  .button:hover {background-color: #3e8e41}
+
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  tr {height:40px;}
+  body {
+    background: #000 url(https://i.pinimg.com/474x/ea/7a/08/ea7a08282f40760a5989ba022d6f0480.jpg) no-repeat center center;
+    background-attachment: fixed;
+}
+  </style>
+  <body>  
+  <div class="container"><div class="center">  
+    <table id="block-table" border="1px solid white" width="200px">
+      <tbody>
+        <tr>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <button id="select-btn" class="button">Generate</button>
+    </div> </div>
+    <script>
+      var table = document.getElementById("block-table");
+      var cells = table.getElementsByTagName("td");
+      var selectBtn = document.getElementById("select-btn");
+
+      selectBtn.addEventListener("click", function() {
+        // Clear any previous selection
+        for (var i = 0; i < cells.length; i++) {
+          cells[i].style.backgroundColor = "";
+        }
+
+        var selectedBlocks = [];
+        var randomIndices = [];
+
+        while (randomIndices.length < 3) {
+          var randomIndex = Math.floor(Math.random() * cells.length); // Generate a random index between 0 and the length of the cells array
+          if (randomIndices.indexOf(randomIndex) === -1) { // Check if the randomly generated index has not been selected before
+            randomIndices.push(randomIndex); // Add the randomly generated index to the selected indices
+            selectedBlocks.push(cells[randomIndex]); // Add the corresponding cell to the selected blocks
+          }
+        }
+
+        for (var i = 0; i < selectedBlocks.length; i++) {
+          selectedBlocks[i].style.backgroundColor = "black"; // Highlight the selected blocks
+        }
+      });
+    </script>
+  </body>
+</html>
